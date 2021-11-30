@@ -1,0 +1,7 @@
+[MESSAGES CONTROL]
+
+disable=missing-docstring
+
+[BASIC]
+good-names=_,c,d,e,i,j,k,t,v,pytestmark,n,rc,ok,tk
+generated-members=(requests\.)?codes\.(ok|unauthorized|forbidden|not_found),

@@ -1,0 +1,39 @@
+Installerat dotnet för att kunna köra C# i VS
+https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
+
+wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+
+sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-5.0
+
+sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y aspnetcore-runtime-5.0
+
+
+dotnet new console
+(Skapar hello world projekt)
+
+dotnet run 
+(För att köra projektet)
+
+
+Testat 
+https://www.hanselman.com/blog/c-and-net-core-scripting-with-the-dotnetscript-global-tool
+dotnet tool install -g dotnet-script
+
+https://github.com/filipw/dotnet-script
+
+cat 1.csx 
+#!/usr/bin/env dotnet-script
+Console.WriteLine("Hello world");
+
+För att köra
+dotnet-script 1.csx
+
+
+
