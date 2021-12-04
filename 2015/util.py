@@ -37,3 +37,18 @@ def measure_time_for(func, *args):
     func(*args)
     elapsed_time = time.time() - start_time
     print('Operation %s took=%s seconds' % (func.__name__, elapsed_time))
+
+
+# Better timeit decorator
+# Credits goes to https://stackoverflow.com/questions/1622943/timeit-versus-timing-decorator
+def timeit(f):
+    def timed(*args, **kw):
+
+        ts = time.time()
+        result = f(*args, **kw)
+        te = time.time()
+
+        print('func:%r args:[%r, %r] took: %2.4f sec' % (f.__name__, args, kw, te-ts))
+        return result
+
+    return timed
