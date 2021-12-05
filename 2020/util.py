@@ -11,6 +11,8 @@ def read_data(filepath):
 
 
 def read_data_as_int(filepath):
+    # Alernative
+    # data = list(map(int, open(filepath).read().split()))
     rows = []
     with open(filepath, 'r') as infile:
         for line in infile:
