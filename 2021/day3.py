@@ -1,6 +1,78 @@
 from typing import DefaultDict
 import util
 
+"""
+day 3 part2
+oxygen generator rating
+
+00100
+11110
+10110
+10111
+10101
+01111
+00111
+11100
+10000
+11001
+00010
+01010
+
+11110
+10110
+10111
+10101
+11100
+10000
+11001
+
+10110
+10111
+10101
+10000
+
+10110
+10111
+10101
+
+10110
+10111
+
+In the fifth position, there are an equal number of 0 bits and 1 bits (one each). So, to find the oxygen generator rating, keep the number with a 1 in that position: 10111.
+As there is only one number left, stop; the oxygen generator rating is 10111, or 23 in decimal.
+
+10111
+
+CO2 scrubber rating
+00100
+11110
+10110
+10111
+10101
+01111
+00111
+11100
+10000
+11001
+00010
+01010
+
+00100
+01111
+00111
+00010
+01010
+
+01010
+01111
+
+In the third position, there are an equal number of 0 bits and 1 bits (one each). So, to find the CO2 scrubber rating, keep the number with a 0 in that position: 01010.
+As there is only one number left, stop; the CO2 scrubber rating is 01010, or 10 in decimal.
+
+Finally, to find the life support rating, multiply the oxygen generator rating (23) by the CO2 scrubber rating (10) to get 230.
+
+"""
+
 INPUT = """00100
 11110
 10110
@@ -29,10 +101,10 @@ def get_gamma_and_epsilon_rate(columns: list):
             gamma_rate.append('1')
             epsilon_rate.append('0')
 
-    # print(gamma_rate, epsilon_rate)
-    binary1 = '0b' + ''.join(gamma_rate)
-    binary2 = '0b' + ''.join(epsilon_rate)
-    return int(binary1,2), int(binary2,2)
+    gamma_binary_as_string = ''.join(gamma_rate)
+    epsilon_binary_as_string = ''.join(epsilon_rate)
+
+    return int(gamma_binary_as_string, 2), int(epsilon_binary_as_string, 2)
 
 
 def convert_to_columns(input):
@@ -45,7 +117,6 @@ def convert_to_columns(input):
 
 
 def get_part2(rows: list):
-    import pdb
     most = rows
     least = rows
     for col_idx in range(0, len(rows[0])):
