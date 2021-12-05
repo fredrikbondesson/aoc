@@ -128,4 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-Zone.Identifier
+*Zone.Identifier
+
+from_github
