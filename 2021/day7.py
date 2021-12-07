@@ -29,8 +29,8 @@ def get_sum_for_position(pos, data, cost = None):
 def get_smallest(data, cost=None):
     smallest = sys.maxsize
 
-    # TODO Perhaps generate magic number 100000
-    for pos in range(100000):
+    # TODO Perhaps generate magic number 1000 somehow
+    for pos in range(1000):
         res = get_sum_for_position(pos, data, cost)
         smallest = min(res, smallest)
 
