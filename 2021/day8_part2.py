@@ -1,7 +1,6 @@
-#INPUT = """acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf"""
-
 from collections import defaultdict
 import util
+
 
 INPUT = """be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
 edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
@@ -14,27 +13,7 @@ bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbg
 egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
 gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce"""
 
-mapping_length_number = {2:1, 4:4, 3:7, 7:8}
 
-def get_number_from_length(length):
-    if length in mapping_length_number.keys():
-        return mapping_length_number[length]
-    return None
-
-def part1(rows):
-    res = defaultdict(int)
-    for row in rows:
-        data = row[row.find('|') + 2:]
-        items = data.split(' ')
-        for item in items:
-            length = len(item)
-            number = get_number_from_length(length)
-            if number:
-                res[number] = res[number] + 1
-
-    return res
-
-# Part 2
 """
  dddd
 e    a
@@ -58,6 +37,7 @@ mapping = {
     8:['a','b','c','d','e', 'f', 'g'],
     }
 
+
 def get_as_number(letters_as_one_string):
     check = [x for x in letters_as_one_string]
     # print('Check:' + str(check))
@@ -65,7 +45,7 @@ def get_as_number(letters_as_one_string):
         if set(check) == set(mapping[nr]):
             return nr
 
-# acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab
+
 def get_as_length_dict_length(letters_as_one_string):
     dict_ = defaultdict(list)
     for letters in letters_as_one_string.split(' '):
@@ -157,21 +137,12 @@ def create_mapping(dict_):
     seven = get_pattern_for_nr(7, dict_)
     eight = get_pattern_for_nr(8, dict_)
     six = get_pattern_for_six(dict_)
-    # print(six)
     three = get_pattern_for_three(dict_)
-    # print(three)
-
     nine = get_pattern_for_nine(dict_)
-    # print(nine)
-
     zero = get_pattern_for_zero(dict_, six, nine)
-    # print(zero)
-
     five = get_pattern_for_five(dict_, six, three)
-    # print(five)
-
     two = get_pattern_for_two(dict_, three, five)
-    # print(two)
+
     return {zero:0, one: 1, two: 2, three: 3, four: 4, five:5, six:6, seven:7, eight:8, nine:9}
 
 
