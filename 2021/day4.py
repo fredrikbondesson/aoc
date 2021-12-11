@@ -111,7 +111,7 @@ def main():
     print(res)
     assert res == 4512
 
-    data = util.read_data('day4.txt')
+    data = util.read_data('2021/day4.txt')
     draws = get_draws(data)
     print(draws)
     boards = get_boards(data)

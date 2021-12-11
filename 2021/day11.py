@@ -1,5 +1,5 @@
 import util
-
+import timeit
 
 INPUT="""5483143223
 2745854711
@@ -213,8 +213,15 @@ def run_with_real_data():
 
 
 def main():
+    start = timeit.default_timer()
     run_with_example_data()
+    stop = timeit.default_timer()
+    print('Time: ', stop - start)
+
+    start = timeit.default_timer()
     run_with_real_data()
+    stop = timeit.default_timer()
+    print('Time: ', stop - start)
 
 
 if __name__ == '__main__':

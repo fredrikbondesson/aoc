@@ -1,4 +1,6 @@
 import sys
+import timeit
+
 
 INPUT = """16,1,2,0,4,2,7,1,2,14"""
 
@@ -83,10 +85,13 @@ def main():
     print(smallest)
     assert smallest == 168
 
+    start = timeit.default_timer()
     data = list(map(int, open('2021/day7.txt').read().split(',')))
     smallest = get_smallest(data, cost)
     print(smallest)
     assert smallest == 95476244
+    stop = timeit.default_timer()
+    print('Time: ', stop - start)
 
 """As it turns out, crab submarine engines don't burn fuel at a constant rate. 
 Instead, each change of 1 step in horizontal position costs 1 more unit of fuel 
