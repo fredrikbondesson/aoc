@@ -162,9 +162,9 @@ def run_with_example_data():
     for nr in range(1, 101):
         run_one_step(rows)
         if rows == all_flashing and all_flashing_nr == 0:
-            all_flashing_nr = nr
+            all_flashing_nr = nr + 100 # actually 95 + 100
 
-    assert all_flashing_nr == 95
+    assert all_flashing_nr == 195
 
 
 def run_with_real_data():
