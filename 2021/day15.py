@@ -85,17 +85,6 @@ def get_as_list_of_lists(data):
         rows.append(buf)
     return rows
 
-# data = list(map(int, INPUT2.split()))
-def get_as_duplicated_list_of_lists(data):
-    rows = [-1] * len(data)
-    for row in data:
-        buf = []
-        for nr in row:
-            buf.append(int(nr))
-
-        rows.append(buf)
-    return rows
-
 
 def get_adjacents(xpos, ypos, visited, indata):
     xy_neighbours = [(-1, 0), (0, -1), (0, 1), (1, 0)]
@@ -122,7 +111,7 @@ def get_min_dist_value(distance_value, visited):
     return min_node, min_cost
 
 
-def run(start_x, start_y, indata, expected):
+def run_dijsktra(start_x, start_y, indata, expected):
     visited = set()
     # current_node = f'{start_x},{start_y}'
     distance_value = {}
@@ -144,7 +133,7 @@ def visit_node(start_x, start_y, visited, distance_value, indata):
     next_x = start_x
     next_y = start_y
     while len(visited) < len(indata) * len(indata[0]):
-
+        print(f'visited={len(visited)} limit={len(indata) * len(indata[0])}')
         current_node = (next_x, next_y)
 
         adjacents = get_adjacents(next_x, next_y, visited, indata)
@@ -175,13 +164,34 @@ def visit_node(start_x, start_y, visited, distance_value, indata):
             assert False
 
 
+def inc_matrice(indata, nr_of_times):
+    # print('inc ' + str(indata))
+    rows = []
+    for b in range(nr_of_times):
+        for row_idx, row in enumerate(indata):
+            buf = []
+            for a in range(nr_of_times):
+                # print(f'Add {a}')
+                for col_idx, val in enumerate(row):
+                    new_val = int(val) + int(a) + int(b)
+                    if new_val > 9:
+                        new_val = new_val - 9
+                    # print(f'New val {new_val}')                    
+                    buf.append(new_val)
+
+            #print(buf)
+            rows.append(buf)
+
+    return rows
+
+
 def main():
     print('INPUT DATA')
     start = timeit.default_timer()
     rows = get_as_list_of_lists(INPUT.split('\n'))
     startx = 0
     starty = 0
-    run(startx, starty, rows, 40)
+    run_dijsktra(startx, starty, rows, 40)
     print(len(rows) * len(rows[0]))
     stop = timeit.default_timer()
     print('Time: ', stop - start)
@@ -193,16 +203,37 @@ def main():
     startx = 0
     starty = 0
     print(len(rows) * len(rows[0]))
-    run(startx, starty, rows, 652)
+    run_dijsktra(startx, starty, rows, 652)
     stop = timeit.default_timer()
     print('Time: ', stop - start)
 
-    print('Part 2')
+    print('Part 2 with example data INPUT_LARGE')
     start = timeit.default_timer()
     rows = get_as_list_of_lists(INPUT_LARGE.split('\n'))
     startx = 0
     starty = 0
-    run(startx, starty, rows, 315)
+    run_dijsktra(startx, starty, rows, 315)
+    print(len(rows) * len(rows[0]))
+    stop = timeit.default_timer()
+    print('Time: ', stop - start)
+
+
+    rows = inc_matrice(INPUT.split('\n'), 5)
+    for row_idx, row in enumerate(rows):
+        # print(''.join([str(x) for x in row]))
+        # print(INPUT_LARGE.split('\n')[row_idx])
+        assert INPUT_LARGE.split('\n')[row_idx] == ''.join([str(x) for x in row])
+
+    print('Part 2')
+    start = timeit.default_timer()
+    data = util.read_data('2021/day15.txt')
+    data_as_list_of_lists = get_as_list_of_lists(data)
+    rows = inc_matrice(data_as_list_of_lists, 5)
+
+    startx = 0
+    starty = 0
+    print('NOTE: Below is really slooooow')
+    run_dijsktra(startx, starty, rows, 2938)
     print(len(rows) * len(rows[0]))
     stop = timeit.default_timer()
     print('Time: ', stop - start)
