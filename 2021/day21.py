@@ -65,7 +65,3 @@ if __name__ == '__main__':
     # Player 2 starting position: 3
     players = {1:{'name':1, 'pos':1, 'score':0}, 2:{'name':2, 'pos':3, 'score':0}}
     part1(players, expected_count=897798, max_score=999)
-
-    # print(sys.maxsize)
-#    444356092776315
-#    2147483647
